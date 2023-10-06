@@ -1,0 +1,14 @@
+.menu li > *:not(ul):not(.menu-title):not(details):active, .menu li > *:not(ul):not(.menu-title):not(details).active, .menu li > details > summary:active {
+    background: transparent;
+    color: tomato;
+}
+
+.menu li > *:not(ul):not(.menu-title):not(details):active, .menu li > *:not(ul):not(.menu-title):not(details).active, .menu li > details > summary:active:hover{
+    background: transparent;
+}
+
+
+.navbar-start .menu{
+    width: 80vw;
+    
+}
