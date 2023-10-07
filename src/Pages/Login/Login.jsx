@@ -1,30 +1,35 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import {  AiOutlineEye, AiTwotoneEyeInvisible } from 'react-icons/ai';
-import { useContext, useState } from "react";
+import {  useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
 
-    const {LogIn} = useContext(AuthContext);
+    const {signIn} = useContext(AuthContext);
     const [showPass, setShowPass] = useState(null);
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log('location i n the login page', location)
 
-    const handleLogin = (e) =>{
+    const handleLogin = e => {
         e.preventDefault();
-
         console.log(e.currentTarget);
         const form = new FormData(e.currentTarget);
         const email = form.get('email');
         const password = form.get('password');
-        console.log( email, password);
+        console.log(email, password);
+        signIn(email, password)
+            .then(result => {
+                console.log(result.user);
 
-        LogIn(email, password)
-        .then(result =>{
-            console.log(result.user);
-        })
-        .catch(error =>{
-            console.log(error);
-        })
+                // navigate after login
+                navigate(location?.state ? location.state : '/');
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     return (

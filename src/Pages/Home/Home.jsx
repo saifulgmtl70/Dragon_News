@@ -30,7 +30,7 @@ const Home = () => {
                 <div className="lg:col-span-2">
 
                     {
-                        news.map(Anews => <NewsCard key={Anews.id} news={Anews}></NewsCard>)
+                        news.map(Anews => <NewsCard key={Anews._id} Anews={Anews}></NewsCard>)
                     }
                 </div>
 
